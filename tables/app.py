@@ -33,16 +33,9 @@ def batch_load_sql(query: str) -> pd.DataFrame: #Загрузка таблицы
 
 
 
-def get_model_path(path: str) -> str: #Внутренняя проверка
-    if os.environ.get("IS_LMS") == "1": 
-        MODEL_PATH = '/workdir/user_input/model'
-    else:
-        MODEL_PATH = path
-    return MODEL_PATH
-
 def load_models(): #Функция для загрузки модели
     model = CatBoostClassifier()
-    model_path = get_model_path("C:/Users/Konstantin/Downloads/catboost_modelDL.cbm")
+    model_path = get_model_path("/catboost_modelDL.cbm")
     model.load_model(model_path)
     return model
 
